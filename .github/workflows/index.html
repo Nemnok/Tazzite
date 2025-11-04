@@ -1,78 +1,372 @@
-<!doctype html>
-<html lang="ru">
+<!DOCTYPE html>
+<html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Презентация — Tazzite</title>
-  <link rel="stylesheet" href="css/styles.css" />
-  <meta name="description" content="Краткая презентация проекта — страница на HTML, CSS и JS" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Presentac SPA</title>
+  <style>
+    #bg {
+      position: fixed;
+      inset: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -1;
+      display: block;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Arial, sans-serif;
+      color: white;
+      text-align: center;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    section {
+      display: none;
+      padding: 2rem;
+      min-height: 100vh;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s, transform 0.6s;
+    }
+    section.active { display: block; opacity: 1; transform: translateY(0); }
+
+    h1 { font-size: 2.5rem; margin-bottom: 1.5rem; }
+    p  { font-size: 1.2rem; max-width: 900px; margin: auto; line-height: 1.6; }
+
+    button {
+      padding: 1rem 2rem;
+      border: none; border-radius: 10px;
+      background: white; color: #9b1c31;
+      font-size: 1.1rem; cursor: pointer; margin: 0.5rem;
+      transition: transform 0.3s ease, background 0.3s;
+    }
+    button:hover { background: #f2f2f2; transform: scale(1.05); }
+
+    .mapa {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 2rem;
+      max-width: 1400px;
+      margin: 3rem auto 0;
+    }
+    .card {
+      background: rgba(255,255,255,0.15);
+      border-radius: 15px;
+      padding: 1.5rem;
+      backdrop-filter: blur(6px);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.4), 0 0 20px rgba(255,255,255,0.3);
+    }
+    .links { display: flex; flex-direction: column; gap: 0.5rem; margin-top: 1rem; }
+    .links button { width: 100%; font-size: 1rem; }
+
+    #transcripcion {
+      text-align: left;
+      max-width: 1000px;
+      margin: 2rem auto;
+      background: rgba(255,255,255,0.15);
+      border-radius: 12px;
+      padding: 1.5rem;
+      backdrop-filter: blur(6px);
+      overflow-y: auto;
+      max-height: 70vh;
+    }
+
+    #loader {
+      text-align: center;
+      color: #fff;
+      font-style: italic;
+      margin: 1rem 0;
+    }
+
+    .btn-interactivo {
+      background-color: #7c0b19;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      padding: 1rem 2rem;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.2s;
+    }
+    .btn-interactivo:hover {
+      background-color: #9b1c31;
+      transform: scale(1.05);
+    }
+  </style>
 </head>
 <body>
-  <header class="site-header">
-    <div class="container header-inner">
-      <a class="logo" href="#">Tazzite</a>
-      <button class="menu-toggle" aria-label="Открыть меню">☰</button>
-      <nav class="site-nav">
-        <a href="#about">О проекте</a>
-        <a href="#features">Фичи</a>
-        <a href="#gallery">Галерея</a>
-        <a href="#contact">Контакты</a>
-      </nav>
+  <canvas id="bg"></canvas>
+
+  <!-- HOME -->
+  <section id="home" class="active">
+    <h1>Bienvenido</h1>
+    <p>Esta es tu presentación interactiva</p>
+    <button onclick="show('indice')">Comenzar</button>
+  </section>
+
+  <!-- ÍNDICE -->
+  <section id="indice">
+    <h1>ÍNDICE</h1>
+    <button onclick="show('ra0')">Mapa</button>
+    <button class="btn-interactivo" onclick="window.location.href='mapa_interactivo.html'">MAPA DE PIENSAS INTERACTIVAS</button>
+    <button onclick="show('ra1')">RA1 CLIMA LABORAL</button>
+    <button onclick="show('ra2')">RA2 GESTIÓN DEL TIEMPO</button>
+    <button onclick="show('ra3')">RA3 PLANIFICACIÓN DE TAREAS</button>
+    <button onclick="show('ra4')">RA4 REUNIONES Y EVENTOS</button>
+    <button onclick="show('ra5')">RA5 VIAJES Y DESPLAZAMIENTOS</button>
+    <br><br>
+    <button onclick="show('home')">⬅ Volver</button>
+  </section>
+
+  <!-- RA0 -->
+  <section id="ra0">
+    <h1>MAPA</h1>
+    <p>Desde aquí puedes acceder a todos los apartados</p>
+    <div class="mapa">
+      <div class="card"><h2>RA1</h2><div class="links">
+        <button onclick="show('ra1')">Ir a RA1</button>
+        <button>Extra 1</button><button>Extra 2</button><button>Extra 3</button>
+        <button>Extra 4</button><button>Extra 5</button></div></div>
+      <div class="card"><h2>RA2</h2><div class="links">
+        <button onclick="show('ra2')">Ir a RA2</button>
+        <button>Extra 1</button><button>Extra 2</button><button>Extra 3</button>
+        <button>Extra 4</button><button>Extra 5</button></div></div>
+      <div class="card"><h2>RA3</h2><div class="links">
+        <button onclick="show('ra3')">Ir a RA3</button>
+        <button>Extra 1</button><button>Extra 2</button><button>Extra 3</button>
+        <button>Extra 4</button><button>Extra 5</button></div></div>
+      <div class="card"><h2>RA4</h2><div class="links">
+        <button onclick="show('ra4')">Ir a RA4</button>
+        <button>Extra 1</button><button>Extra 2</button><button>Extra 3</button>
+        <button>Extra 4</button><button>Extra 5</button></div></div>
+      <div class="card"><h2>RA5</h2><div class="links">
+        <button onclick="show('ra5')">Ir a RA5</button>
+        <button>Extra 1</button><button>Extra 2</button><button>Extra 3</button>
+        <button>Extra 4</button><button>Extra 5</button></div></div>
     </div>
-  </header>
+    <br><button onclick="show('indice')">⬅ Volver al Índice</button>
 
-  <main>
-    <section class="hero">
-      <div class="container">
-        <h1>Красивый и лёгкий сайт‑презентация</h1>
-        <p class="lead">Страница, написанная на чистом HTML, CSS и JavaScript — быстро редактируется в браузере и разворачивается через GitHub Pages.</p>
-        <p><a class="btn" href="#about">Узнать больше</a></p>
+    <!-- Botón lateral -->
+    <div style="position: fixed; top: 10%; right: 40px; transform: translateY(-50%); z-index: 9999;">
+      <button onclick="window.location.href='mapa_interactivo.html'"
+        style="background-color:#7c0b19;color:#fff;border:none;border-radius:10px;padding:1rem 1.6rem;
+               font-size:1.05rem;cursor:pointer;box-shadow:0 6px 18px rgba(0,0,0,0.35);
+               transition:transform .2s, background .25s;white-space:nowrap;"
+        onmouseover="this.style.backgroundColor='#9b1c31'"
+        onmouseout="this.style.backgroundColor='#7c0b19'">
+        MAPA DE PIENSAS INTERACTIVAS
+      </button>
+    </div>
+  </section>
+
+  <!-- RA1 -->
+  <section id="ra1">
+    <h1>RA1 — CLIMA LABORAL Y MOTIVACIÓN</h1>
+    <p>
+      El clima laboral representa el ambiente psicológico dentro de la organización. 
+      Un buen clima fomenta la cooperación, la innovación y la satisfacción general. 
+      La motivación impulsa a los trabajadores a cumplir objetivos, 
+      superar obstáculos y mantener una actitud positiva frente al cambio.
+    </p>
+
+    <div style="margin-top:2rem;">
+      <button onclick="toggleTranscripcion()">PODCAST</button>
+      <button>TRANSCRIPCIONES</button>
+      <button onclick="window.location.href='glosario.html'">GLOSSARIO</button>
+      <button>LIDERAZGO</button>
+      <button>QUESTIONARIO</button>
+    </div>
+
+    <div id="transcripcion" style="display:none;">
+      <h2>Transcripción del podcast</h2>
+      <div id="loader" style="display:none;">Cargando transcripción...</div>
+      <p id="texto-transcripcion" style="white-space:pre-line;font-size:1rem;line-height:1.5;"></p>
+      <div style="text-align:center;margin-top:1rem;">
+        <button onclick="descargarTranscripcion()">Descargar transcripción</button>
       </div>
-    </section>
+    </div>
 
-    <section id="about" class="container section">
-      <h2>О проекте</h2>
-      <p>Короткое описание: цель — показать продукт, кейс или портфолио. Этот шаблон можно расширить под ваши нужды.</p>
-    </section>
+    <!-- ✅ Nuevo bloque con vista previa PDF -->
+    <div style="margin-top:3rem;">
+      <h2>Ajustes (Aplicaciones)</h2>
+      <p>Puedes visualizar o descargar materiales adicionales desde la carpeta <code>/docs</code>.</p>
 
-    <section id="features" class="container section features">
-      <h2>Фичи</h2>
-      <div class="grid">
-        <article class="card reveal">
-          <h3>Лёгкий</h3>
-          <p>Минимум зависимостей — только статические файлы.</p>
-        </article>
-        <article class="card reveal">
-          <h3>Адаптивный</h3>
-          <p>Мобильная и десктоп версия без доп. усилий.</p>
-        </article>
-        <article class="card reveal">
-          <h3>Прост в редактировании</h3>
-          <p>Правьте прямо в браузере — GitHub.dev или Edit → Commit.</p>
-        </article>
+      <div id="ajustes-container" style="display:flex;justify-content:center;flex-wrap:wrap;gap:0.5rem;margin-top:1rem;">
+        <button onclick="verPDF('Podcasts_Alumos.pdf')">Ajuste 1 — Podcast</button>
+        <button onclick="descargar('ajuste2.pdf')">Ajuste 2</button>
+        <button onclick="descargar('ajuste3.pdf')">Ajuste 3</button>
+        <button onclick="descargar('ajuste4.pdf')">Ajuste 4</button>
+        <button onclick="descargar('ajuste5.pdf')">Ajuste 5</button>
       </div>
-    </section>
 
-    <section id="gallery" class="container section">
-      <h2>Галерея / Демонстрация</h2>
-      <p>Здесь можно вставить изображения, видео или интерактивные демо.</p>
-      <div class="gallery reveal">
-        <div class="thumb">Пример 1</div>
-        <div class="thumb">Пример 2</div>
-        <div class="thumb">Пример 3</div>
+      <div id="pdf-preview" style="display:none;margin-top:2rem;">
+        <h3>Vista previa del documento</h3>
+        <iframe id="pdf-frame" src="" width="80%" height="600"
+          style="border-radius:10px;border:none;box-shadow:0 0 20px rgba(0,0,0,0.4);"></iframe>
+        <br>
+        <button onclick="cerrarPDF()">Cerrar vista previa</button>
+        <button onclick="descargarPDFActual()">Descargar PDF</button>
       </div>
-    </section>
+    </div>
 
-    <section id="contact" class="container section">
-      <h2>Связаться</h2>
-      <p>Почта: <a href="mailto:you@example.com">you@example.com</a></p>
-    </section>
-  </main>
+    <br><button onclick="show('indice')">⬅ Índice</button>
+  </section>
 
-  <footer class="site-footer">
-    <div class="container">© Tazzite — презентация проекта</div>
-  </footer>
+  <!-- RA2–RA5 -->
+  <section id="ra2"><h1>RA2</h1><p>Contenido de RA2...</p></section>
+  <section id="ra3"><h1>RA3</h1><p>Contenido de RA3...</p></section>
+  <section id="ra4"><h1>RA4</h1><p>Contenido de RA4...</p></section>
+  <section id="ra5"><h1>RA5</h1><p>Contenido de RA5...</p></section>
 
-  <script src="js/main.js" defer></script>
+  <script>
+    function show(id){
+      document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
+      document.getElementById(id).classList.add("active");
+      window.scrollTo({top:0,behavior:"smooth"});
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      const hash = window.location.hash.replace('#', '');
+      if (hash && document.getElementById(hash)) show(hash);
+    });
+    window.addEventListener('hashchange', () => {
+      const hash = window.location.hash.replace('#', '');
+      if (hash && document.getElementById(hash)) show(hash);
+    });
+
+    /* === Descargar archivos === */
+    function descargar(nombre){
+      const a=document.createElement('a');
+      a.href=`docs/${nombre}`;
+      a.download=nombre;
+      a.style.display='none';
+      document.body.appendChild(a);
+      a.click(); document.body.removeChild(a);
+    }
+
+    /* === Transcripción === */
+    let transcripcionVisible=false;
+    let textoCargado="";
+    function toggleTranscripcion(){
+      const cont=document.getElementById("transcripcion");
+      const txt=document.getElementById("texto-transcripcion");
+      const loader=document.getElementById("loader");
+      if(!transcripcionVisible){
+        if(!textoCargado){
+          loader.style.display="block";
+          txt.textContent="";
+          fetch("transcripcion_ra1.txt")
+            .then(r=>r.text())
+            .then(data=>{textoCargado=data.trim();txt.textContent=textoCargado;loader.style.display="none";})
+            .catch(()=>{loader.style.display="none";txt.textContent="⚠️ No se pudo cargar la transcripción.";});
+        }
+        cont.style.display="block"; cont.style.opacity=1;
+      } else cont.style.display="none";
+      transcripcionVisible=!transcripcionVisible;
+    }
+
+    function descargarTranscripcion(){
+      fetch("transcripcion_ra1.txt")
+        .then(r=>r.text())
+        .then(data=>{
+          const blob=new Blob([data],{type:"text/plain;charset=utf-8"});
+          const enlace=document.createElement("a");
+          enlace.href=URL.createObjectURL(blob);
+          enlace.download="transcripcion_RA1.txt";
+          document.body.appendChild(enlace);
+          enlace.click();
+          document.body.removeChild(enlace);
+          URL.revokeObjectURL(enlace.href);
+        })
+        .catch(()=>alert("⚠️ No se pudo descargar la transcripción."));
+    }
+
+    /* === Vista previa PDF === */
+    let pdfActual = "";
+    function verPDF(nombreArchivo) {
+      pdfActual = nombreArchivo;
+      const preview = document.getElementById("pdf-preview");
+      const frame = document.getElementById("pdf-frame");
+      frame.src = `docs/${nombreArchivo}#toolbar=0`;
+      preview.style.display = "block";
+      window.scrollTo({ top: preview.offsetTop - 50, behavior: "smooth" });
+    }
+    function cerrarPDF() {
+      const preview = document.getElementById("pdf-preview");
+      const frame = document.getElementById("pdf-frame");
+      frame.src = "";
+      preview.style.display = "none";
+    }
+    function descargarPDFActual() {
+      if (pdfActual) descargar(pdfActual);
+    }
+
+    /* === Fondo animado === */
+    const canvas=document.getElementById('bg');
+    const ctx=canvas.getContext('2d',{alpha:true});
+    let w,h,dpr;
+    function resize(){
+      dpr=Math.max(1,Math.min(window.devicePixelRatio||1,2));
+      w=canvas.width=Math.floor(window.innerWidth*dpr);
+      h=canvas.height=Math.floor(window.innerHeight*dpr);
+      canvas.style.width=window.innerWidth+'px';
+      canvas.style.height=window.innerHeight+'px';
+    }
+    window.addEventListener('resize',resize,{passive:true});
+    resize();
+
+    const BLOBS=7;
+    const blobs=Array.from({length:BLOBS}).map(()=>({
+      x0:Math.random()*w,y0:Math.random()*h,
+      r:Math.min(w,h)*(0.18+Math.random()*0.22),
+      spx:0.0003+Math.random()*0.0007,
+      spy:0.0003+Math.random()*0.0007,
+      a:0.18+Math.random()*0.15,
+      hue:350+Math.random()*20,
+      phase:Math.random()*Math.PI*2
+    }));
+
+    function baseGradient(t){
+      const g=ctx.createLinearGradient(0,0,w,h);
+      const sh=Math.sin(t*0.0002)*10;
+      g.addColorStop(0,`hsl(${350+sh},68%,32%)`);
+      g.addColorStop(1,`hsl(${3+sh},70%,48%)`);
+      return g;
+    }
+
+    function tick(ts){
+      requestAnimationFrame(tick);
+      ctx.globalCompositeOperation='source-over';
+      ctx.fillStyle=baseGradient(ts);
+      ctx.fillRect(0,0,w,h);
+      ctx.fillStyle='rgba(0,0,0,0.08)';
+      ctx.fillRect(0,0,w,h);
+      ctx.globalCompositeOperation='lighter';
+      blobs.forEach((b,i)=>{
+        const t=ts+i*1000;
+        const x=(b.x0+Math.sin(t*b.spx+b.phase)*(w*0.25))%w;
+        const y=(b.y0+Math.cos(t*b.spy+b.phase)*(h*0.25))%h;
+        const g=ctx.createRadialGradient(x,y,0,x,y,b.r);
+        const hueShift=Math.sin(t*0.0003+b.phase)*15;
+        const c=`hsla(${b.hue+hueShift},70%,60%,${b.a})`;
+        g.addColorStop(0,c);g.addColorStop(1,'hsla(0,0%,0%,0)');
+        ctx.fillStyle=g;ctx.beginPath();ctx.arc(x,y,b.r,0,Math.PI*2);ctx.fill();
+      });
+      ctx.globalCompositeOperation='multiply';
+      const v=ctx.createRadialGradient(w*0.5,h*0.5,Math.min(w,h)*0.3,w*0.5,h*0.5,Math.max(w,h)*0.7);
+      v.addColorStop(0,'rgba(0,0,0,0)');
+      v.addColorStop(1,'rgba(0,0,0,0.22)');
+      ctx.fillStyle=v;ctx.fillRect(0,0,w,h);
+      ctx.globalCompositeOperation='source-over';
+    }
+    requestAnimationFrame(tick);
+  </script>
 </body>
 </html>
