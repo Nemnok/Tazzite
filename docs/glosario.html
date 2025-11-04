@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Glosario</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Arial, sans-serif;
+      color: white;
+      background: linear-gradient(135deg, #9b1c31, #d94c5a);
+      min-height: 100vh;
+      text-align: center;
+    }
+
+    h1 {
+      margin-top: 2rem;
+      font-size: 2.5rem;
+    }
+
+    input {
+      margin: 1rem auto;
+      padding: 0.7rem 1rem;
+      font-size: 1.1rem;
+      border-radius: 10px;
+      border: none;
+      width: 80%;
+      max-width: 500px;
+      text-align: center;
+    }
+
+    .list {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      padding: 2rem;
+    }
+
+    .term {
+      background: rgba(255,255,255,0.15);
+      padding: 1rem 1.5rem;
+      border-radius: 12px;
+      backdrop-filter: blur(5px);
+      max-width: 800px;
+      width: 100%;
+      text-align: left;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+    }
+
+    .term:hover {
+      transform: scale(1.02);
+      box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+    }
+
+    .definicion {
+      display: none;
+      margin-top: 0.5rem;
+      color: #f2f2f2;
+      line-height: 1.5;
+    }
+
+    button {
+      margin-top: 2rem;
+      padding: 1rem 2rem;
+      border: none;
+      border-radius: 10px;
+      background: white;
+      color: #9b1c31;
+      font-size: 1.1rem;
+      cursor: pointer;
+    }
+
+    button:hover { background: #f8f8f8; transform: scale(1.05); }
+  </style>
+</head>
+<body>
+  <h1>Glosario</h1>
+  <input type="text" id="buscar" placeholder="Buscar término..." />
+
+  <div class="list" id="lista"></div>
+
+  <!-- ✅ возврат в index.html внутри docs -->
+  <button onclick="window.location.href='index.html#ra1'">⬅ Volver</button>
+
+  <script>
+    const glosario = [
+      { term: "Asertividad", def: "Expresar ideas y emociones con claridad y respeto, equilibrando derechos propios y ajenos." },
+      { term: "Burnout", def: "Desgaste profesional con agotamiento físico y emocional por exceso de trabajo o mal clima." },
+      { term: "Ciberseguridad", def: "Medidas para proteger información y sistemas ante ataques o accesos no autorizados." },
+      { term: "Confidencialidad", def: "Protección de la información ante acceso o divulgación no autorizada." },
+      { term: "Empatía", def: "Comprender las emociones de los demás para fortalecer relaciones laborales." },
+      { term: "Liderazgo democrático", def: "Basado en la participación y la comunicación abierta dentro del equipo." },
+      { term: "Liderazgo visionario", def: "Inspira con una visión clara del futuro y fomenta la innovación." },
+      { term: "Motivación", def: "Impulso que lleva a actuar y alcanzar objetivos personales o laborales." },
+      { term: "Reputación", def: "Imagen pública de la organización basada en ética y coherencia." },
+      { term: "Stakeholders", def: "Grupos o personas afectadas por las decisiones de la empresa." }
+    ];
+
+    const lista = document.getElementById("lista");
+    const buscar = document.getElementById("buscar");
+
+    function renderList(filtro = "") {
+      lista.innerHTML = "";
+      glosario
+        .filter(item => item.term.toLowerCase().includes(filtro.toLowerCase()))
+        .forEach(item => {
+          const div = document.createElement("div");
+          div.className = "term";
+          div.innerHTML = `<strong>${item.term}</strong><div class="definicion">${item.def}</div>`;
+          div.onclick = () => {
+            const def = div.querySelector(".definicion");
+            def.style.display = def.style.display === "block" ? "none" : "block";
+          };
+          lista.appendChild(div);
+        });
+    }
+
+    buscar.addEventListener("input", e => renderList(e.target.value));
+    renderList();
+  </script>
+</body>
+</html>
