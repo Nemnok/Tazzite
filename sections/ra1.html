@@ -1,0 +1,91 @@
+<section id="ra1" aria-labelledby="ra1-title">
+  <h1 id="ra1-title">RA1 — CLIMA LABORAL Y MOTIVACIÓN</h1>
+
+  <p>
+    El clima laboral representa el ambiente psicológico dentro de la organización.
+    Un buen clima fomenta la cooperación, la innovación y la satisfacción general.
+    La motivación impulsa a los trabajadores a cumplir objetivos, superar obstáculos
+    y mantener una actitud positiva frente al cambio.
+  </p>
+
+  <div class="acciones-ra1">
+    <button type="button" onclick="toggleTranscripcion()">PODCAST</button>
+    <button type="button">TRANSCRIPCIONES</button>
+
+    <!-- FIXED -->
+    <button type="button" onclick="window.location.href='sections/glosario.html'">
+      GLOSSARIO
+    </button>
+
+    <button type="button">LIDERAZGO</button>
+    <button type="button" onclick="window.location.href='sections/cuestionario_ra1.html'">
+  QUESTIONARIO
+</button>
+
+  </div>
+
+  <div id="transcripcion" style="display:none;">
+    <h2>Transcripción del podcast</h2>
+    <div id="loader" style="display:none;">Cargando transcripción...</div>
+    <p id="texto-transcripcion" style="white-space:pre-line;font-size:1rem;line-height:1.5;"></p>
+    <div style="text-align:center;margin-top:1rem;">
+      <button type="button" onclick="descargarTranscripcion()">Descargar transcripción</button>
+    </div>
+  </div>
+
+  <div class="motivacion">
+    <h2>Modelos y teorías de motivación</h2>
+    <p>Comprender cómo y por qué las personas se motivan permite mejorar el clima laboral y la eficacia del equipo.</p>
+
+    <details open>
+      <summary><strong>Tipos de motivación</strong></summary>
+      <ul>
+        <li><b>Intrínseca:</b> satisfacción personal, interés, desarrollo propio.</li>
+        <li><b>Extrínseca:</b> recompensas externas como salario o reconocimiento.</li>
+        <li><b>Trascendente:</b> deseo de contribuir positivamente a otros o a la sociedad.</li>
+      </ul>
+    </details>
+
+    <details>
+      <summary><strong>Teorías de contenido — Qué motiva</strong></summary>
+      <ul>
+        <li><b>Maslow:</b> jerarquía de necesidades, desde las básicas hasta la autorrealización.</li>
+        <li><b>Herzberg:</b> factores higiénicos y motivadores.</li>
+        <li><b>McClelland:</b> necesidades de logro, poder y afiliación.</li>
+        <li><b>Alderfer (ERG):</b> existencia, relación y crecimiento.</li>
+      </ul>
+    </details>
+
+    <details>
+      <summary><strong>Teorías de proceso — Cómo se motiva</strong></summary>
+      <ul>
+        <li><b>Vroom (Expectativa):</b> esfuerzo → resultado → recompensa.</li>
+        <li><b>Locke (Metas):</b> metas claras y desafiantes aumentan el rendimiento.</li>
+        <li><b>Adams (Equidad):</b> la percepción de justicia afecta la motivación.</li>
+      </ul>
+    </details>
+  </div>
+
+  <div class="ajustes">
+    <h2>Ajustes (Aplicaciones)</h2>
+    <p>Puedes visualizar o descargar materiales adicionales desde la carpeta <code>/docs</code>.</p>
+    <div id="ajustes-container">
+      <button type="button" onclick="verPDF('Podcasts_alumos.pdf')">Ajuste 1 — Podcast</button>
+      <button type="button" onclick="descargar('ajuste2.pdf')">Ajuste 2</button>
+      <button type="button" onclick="descargar('ajuste3.pdf')">Ajuste 3</button>
+      <button type="button" onclick="descargar('ajuste4.pdf')">Ajuste 4</button>
+      <button type="button" onclick="descargar('ajuste5.pdf')">Ajuste 5</button>
+    </div>
+
+    <div id="pdf-preview" style="display:none;margin-top:2rem;">
+      <h3>Vista previa del documento</h3>
+      <iframe id="pdf-frame" src="" width="80%" height="600" title="Vista previa PDF"></iframe>
+      <br>
+      <button type="button" onclick="cerrarPDF()">Cerrar vista previa</button>
+      <button type="button" onclick="descargarPDFActual()">Descargar PDF</button>
+    </div>
+  </div>
+
+  <br><button type="button" onclick="goto('indice')">⬅ Índice</button>
+  <script src="../js/ra1.js"></script>
+</section>
