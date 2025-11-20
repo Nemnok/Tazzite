@@ -8,34 +8,45 @@
     y mantener una actitud positiva frente al cambio.
   </p>
 
+  <!-- BOTONES PRINCIPALES -->
   <div class="acciones-ra1">
     <button type="button" onclick="toggleTranscripcion()">PODCAST</button>
-    <button type="button">TRANSCRIPCIONES</button>
 
-    <!-- FIXED -->
-    <button type="button" onclick="window.location.href='sections/glosario.html'">
-      GLOSSARIO
+    <button type="button" onclick="location.href='sections/transcripciones_ra1.html'">
+      TRANSCRIPCIONES
     </button>
 
-    <button type="button">LIDERAZGO</button>
-    <button type="button" onclick="window.location.href='sections/cuestionario_ra1.html'">
-  QUESTIONARIO
-</button>
+    <button type="button" onclick="location.href='docs/glosario.html'">
+      GLOSARIO
+    </button>
 
+    <button type="button" onclick="location.href='sections/liderazgo_ra1.html'">
+      LIDERAZGO
+    </button>
+
+    <button type="button" onclick="location.href='sections/cuestionario_ra1.html'">
+      QUESTIONARIO
+    </button>
   </div>
 
+  <!-- TRANSCRIPCIÓN PODCAST -->
   <div id="transcripcion" style="display:none;">
     <h2>Transcripción del podcast</h2>
     <div id="loader" style="display:none;">Cargando transcripción...</div>
     <p id="texto-transcripcion" style="white-space:pre-line;font-size:1rem;line-height:1.5;"></p>
+
     <div style="text-align:center;margin-top:1rem;">
       <button type="button" onclick="descargarTranscripcion()">Descargar transcripción</button>
     </div>
   </div>
 
+  <!-- MODELOS DE MOTIVACIÓN -->
   <div class="motivacion">
     <h2>Modelos y teorías de motivación</h2>
-    <p>Comprender cómo y por qué las personas se motivan permite mejorar el clima laboral y la eficacia del equipo.</p>
+    <p>
+      Comprender cómo y por qué las personas se motivan permite mejorar el clima laboral
+      y la eficacia del equipo.
+    </p>
 
     <details open>
       <summary><strong>Tipos de motivación</strong></summary>
@@ -48,12 +59,23 @@
 
     <details>
       <summary><strong>Teorías de contenido — Qué motiva</strong></summary>
+
       <ul>
         <li><b>Maslow:</b> jerarquía de necesidades, desde las básicas hasta la autorrealización.</li>
         <li><b>Herzberg:</b> factores higiénicos y motivadores.</li>
         <li><b>McClelland:</b> necesidades de logro, poder y afiliación.</li>
         <li><b>Alderfer (ERG):</b> existencia, relación y crecimiento.</li>
       </ul>
+
+      <!-- Pirámide -->
+      <svg viewBox="0 0 300 260" width="90%" style="margin:1rem auto;display:block;">
+        <polygon points="150,10 290,250 10,250" fill="#9b1c31" opacity="0.8"/>
+        <text x="150" y="45" text-anchor="middle" fill="white" font-size="16">Autorrealización</text>
+        <text x="150" y="95" text-anchor="middle" fill="white" font-size="16">Reconocimiento</text>
+        <text x="150" y="145" text-anchor="middle" fill="white" font-size="16">Social</text>
+        <text x="150" y="195" text-anchor="middle" fill="white" font-size="16">Seguridad</text>
+        <text x="150" y="235" text-anchor="middle" fill="white" font-size="16">Fisiológicas</text>
+      </svg>
     </details>
 
     <details>
@@ -66,26 +88,43 @@
     </details>
   </div>
 
+  <!-- ACTIVIDADES -->
   <div class="ajustes">
-    <h2>Ajustes (Aplicaciones)</h2>
-    <p>Puedes visualizar o descargar materiales adicionales desde la carpeta <code>/docs</code>.</p>
-    <div id="ajustes-container">
-      <button type="button" onclick="verPDF('Podcasts_alumos.pdf')">Ajuste 1 — Podcast</button>
-      <button type="button" onclick="descargar('ajuste2.pdf')">Ajuste 2</button>
-      <button type="button" onclick="descargar('ajuste3.pdf')">Ajuste 3</button>
-      <button type="button" onclick="descargar('ajuste4.pdf')">Ajuste 4</button>
-      <button type="button" onclick="descargar('ajuste5.pdf')">Ajuste 5</button>
-    </div>
+    <h2>Actividades — RA1</h2>
+    <p>Selecciona una actividad para ver el análisis correspondiente.</p>
 
-    <div id="pdf-preview" style="display:none;margin-top:2rem;">
-      <h3>Vista previa del documento</h3>
-      <iframe id="pdf-frame" src="" width="80%" height="600" title="Vista previa PDF"></iframe>
-      <br>
-      <button type="button" onclick="cerrarPDF()">Cerrar vista previa</button>
-      <button type="button" onclick="descargarPDFActual()">Descargar PDF</button>
+    <div id="ajustes-container">
+
+      <button type="button" onclick="location.href='sections/actividad1.html'">
+        Actividad 1 — Empresas de eventos en Tenerife
+      </button>
+
+      <button type="button" onclick="location.href='sections/actividad2.html'">
+        Actividad 2 — Imagen corporativa de empresas
+      </button>
+
+      <button type="button" onclick="location.href='sections/actividad3.html'">
+        Actividad 3 — Servicios y sectores profesionales
+      </button>
+
+      <button type="button" onclick="location.href='sections/actividad4.html'">
+        Actividad 4 — Innovación y sostenibilidad en eventos
+      </button>
+
     </div>
   </div>
 
-  <br><button type="button" onclick="goto('indice')">⬅ Índice</button>
+  <!-- PDF VIEWER (si lo necesitas) -->
+  <div id="pdf-preview" style="display:none;margin-top:2rem;">
+    <h3>Vista previa del documento</h3>
+    <iframe id="pdf-frame" src="" width="80%" height="600" title="Vista previa PDF"></iframe>
+    <br>
+    <button type="button" onclick="cerrarPDF()">Cerrar vista previa</button>
+    <button type="button" onclick="descargarPDFActual()">Descargar PDF</button>
+  </div>
+
+  <br>
+  <button type="button" onclick="goto('indice')">⬅ Índice</button>
+
   <script src="../js/ra1.js"></script>
 </section>
