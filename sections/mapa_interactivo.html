@@ -69,8 +69,8 @@
   <h1>MAPA DE PIENSAS INTERACTIVAS</h1>
 
   <!-- Botones de navegación -->
-  <button class="nav-btn nav-left" onclick="window.location.href='../index.html#mapa'">⬅ Mapa General</button>
-  <button class="nav-btn nav-right" onclick="window.location.href='../index.html#indice'">Índice ➡</button>
+  <button class="nav-btn nav-left" onclick="location.hash='mapa'">⬅ Mapa General</button>
+  <button class="nav-btn nav-right" onclick="location.hash='indice'">Índice ➡</button>
 
   <canvas id="galaxia"></canvas>
   <div id="tooltip"></div>
@@ -207,12 +207,12 @@
 
       for (const n of nodes.slice(1)) {
         if (Math.hypot(mx - n.x, my - n.y) < n.size + 4) {
-          window.location.href = "../index.html#" + n.link;
+          location.hash = n.link;
           return;
         }
         for (const eNode of n.extras) {
           if (Math.hypot(mx - eNode.x, my - eNode.y) < eNode.size + 3) {
-            window.location.href = "../index.html#" + n.link;
+            location.hash = n.link;
             return;
           }
         }
